@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Inscritos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Listado de Inscritos</h1>
+    <a href="{{ url_for('index') }}" class="btn">Nuevo</a>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Fecha</th>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Turno</th>
+            <th>Seminarios</th>
+            <th>Acciones</th>
+        </tr>
+        {% for inscrito in inscritos %}
+        <tr>
+            <td>{{ inscrito['id'] }}</td>
+            <td>{{ inscrito['fecha'] }}</td>
+            <td>{{ inscrito['nombre'] }}</td>
+            <td>{{ inscrito['apellidos'] }}</td>
+            <td>{{ inscrito['turno'] }}</td>
+            <td>{{ inscrito['seminarios'] }}</td>
+            <td>
+                <a href="{{ url_for('editar', id=inscrito['id']) }}" class="btn">Editar</a> | 
+                <form action="{{ url_for('eliminar', id=inscrito['id']) }}" method="POST" style="display:inline;">
+                    <input type="submit" value="Eliminar" class="btn">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

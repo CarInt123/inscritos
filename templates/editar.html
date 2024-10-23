@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Inscrito</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Editar Inscrito</h1>
+    <form action="{{ url_for('actualizar', id=inscrito['id']) }}" method="POST">
+        <div class="contenedor">
+            <div>
+                <h3>Datos</h3>
+                Fecha: <input type="date" name="fecha" value="{{ inscrito['fecha'] }}" required><br><br>
+                Nombre: <input type="text" name="nombre" value="{{ inscrito['nombre'] }}" required><br><br>
+                Apellidos: <input type="text" name="apellidos" value="{{ inscrito['apellidos'] }}" required><br><br>
+                Turno:<br>
+                <div class="turno-container">
+                    <input type="radio" name="turno" value="Mañana" {% if inscrito['turno'] == 'Mañana' %}checked{% endif %}> Mañana<br>
+                    <input type="radio" name="turno" value="Tarde" {% if inscrito['turno'] == 'Tarde' %}checked{% endif %}> Tarde<br>
+                    <input type="radio" name="turno" value="Noche" {% if inscrito['turno'] == 'Noche' %}checked{% endif %}> Noche<br>
+                </div>
+            </div>
+
+            <div>
+                <h3>Seminarios Disponibles</h3>
+                <input type="checkbox" name="seminarios" value="Inteligencia Artificial" {% if 'Inteligencia Artificial' in inscrito['seminarios'] %}checked{% endif %}> Inteligencia Artificial<br>
+                <input type="checkbox" name="seminarios" value="Machine Learning" {% if 'Machine Learning' in inscrito['seminarios'] %}checked{% endif %}> Machine Learning<br>
+                <input type="checkbox" name="seminarios" value="Simulacion con Arena" {% if 'Simulacion con Arena' in inscrito['seminarios'] %}checked{% endif %}> Simulación con Arena<br>
+                <input type="checkbox" name="seminarios" value="Robotica Educativa" {% if 'Robotica Educativa' in inscrito['seminarios'] %}checked{% endif %}> Robótica Educativa<br>
+            </div>
+        </div>
+
+        <br><br>
+        <button type="submit">Actualizar Registro</button>
+    </form>
+</body>
+</html>

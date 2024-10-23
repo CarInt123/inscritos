@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Seminarios</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Registro de Seminarios</h1>
+    <form action="{{ url_for('registrar') }}" method="POST">
+        <div  class="contenedor" >
+
+            <div>
+                <h3>Datos</h3>
+                Fecha: <input type="date" name="fecha" required><br><br>
+                Nombre: <input type="text" name="nombre" required><br><br>
+                Apellidos: <input type="text" name="apellidos" required><br><br>
+                Turno:<br>
+                <div class="turno-container"> 
+                    <input type="radio" name="turno" value="Mañana" required> Mañana
+                    <input type="radio" name="turno" value="Tarde" required> Tarde
+                    <input type="radio" name="turno" value="Noche" required> Noche
+                </div>
+            </div>
+
+            <div>
+                <h3>Seminarios Disponibles</h3>
+                <input type="checkbox" name="seminarios" value="Inteligencia Artificial"> Inteligencia Artificial<br>
+                <input type="checkbox" name="seminarios" value="Machine Learning"> Machine Learning<br>
+                <input type="checkbox" name="seminarios" value="Simulacion con Arena"> Simulación con Arena<br>
+                <input type="checkbox" name="seminarios" value="Robotica Educativa"> Robótica Educativa<br>
+            </div>
+        </div>
+        <br><br>
+        <button type="submit">Enviar Registro</button>
+    </form>
+</body>
+</html>
